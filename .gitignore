@@ -16,3 +16,10 @@ Thumbs.db
 
 # Local-only
 _branchie-temp/
+
+# Video assets hosted on Aliyun OSS (hudongyingyou bucket)
+EP01-CH01-videos/
+*.mp4
+*.MP4
+*.mp3
+*.MP3

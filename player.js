@@ -10,8 +10,26 @@ function parseTimeSpan(str) {
   return parseFloat(str) * 1000 || 0;
 }
 
+let videoBaseUrl = '';
+
+async function loadOssConfig() {
+  try {
+    const res = await fetch('data/oss.json');
+    if (!res.ok) return;
+    const cfg = await res.json();
+    videoBaseUrl = (cfg.videoBaseUrl || '').trim();
+  } catch {
+    // fallback to same-origin relative paths
+  }
+}
+
 function resolveVideoPath(baseUrl, relativePath) {
+  if (/^https?:\/\//i.test(relativePath)) return relativePath;
   const clean = relativePath.replace(/^\.\//, '');
+  if (videoBaseUrl) {
+    const base = videoBaseUrl.endsWith('/') ? videoBaseUrl : `${videoBaseUrl}/`;
+    return new URL(clean, base).href;
+  }
   return new URL(clean, baseUrl).href;
 }
 
@@ -408,6 +426,7 @@ function backToSeries() {
 }
 
 async function init() {
+  await loadOssConfig();
   const res = await fetch('data/series.json');
   catalog = await res.json();
 
