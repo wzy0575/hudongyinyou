@@ -10,7 +10,7 @@ function parseTimeSpan(str) {
   return parseFloat(str) * 1000 || 0;
 }
 
-let videoBaseUrl = '';
+let videoBaseUrl = (typeof window !== 'undefined' && window.__VIDEO_BASE_URL__) || '';
 
 /** Resolve asset path relative to current page (/game vs /game/) */
 function assetUrl(relativePath) {
@@ -18,15 +18,40 @@ function assetUrl(relativePath) {
   return new URL(path, new URL('./', window.location.href).href).href;
 }
 
-async function loadOssConfig() {
-  try {
-    const res = await fetch(assetUrl('data/oss.json'));
-    if (!res.ok) return;
-    const cfg = await res.json();
-    videoBaseUrl = (cfg.videoBaseUrl || '').trim();
-  } catch {
-    // fallback to same-origin relative paths
+function ossConfigCandidates() {
+  const urls = [];
+  if (window.__VIDEO_BASE_URL__) return urls; // already have base
+  // 部署在 /game/ 下的固定路径（最可靠）
+  if (location.pathname.startsWith('/game')) {
+    urls.push('/game/data/oss.json');
   }
+  urls.push(assetUrl('data/oss.json'));
+  return urls;
+}
+
+async function loadOssConfig() {
+  if (videoBaseUrl) return videoBaseUrl;
+  if (window.__VIDEO_BASE_URL__) {
+    videoBaseUrl = window.__VIDEO_BASE_URL__.trim();
+    return videoBaseUrl;
+  }
+  for (const url of ossConfigCandidates()) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) continue;
+      const cfg = await res.json();
+      videoBaseUrl = (cfg.videoBaseUrl || '').trim();
+      if (videoBaseUrl) return videoBaseUrl;
+    } catch {
+      // try next
+    }
+  }
+  console.warn('[Branchie] OSS config not loaded, videos may fail');
+  return '';
+}
+
+async function ensureOssConfig() {
+  if (!videoBaseUrl) await loadOssConfig();
 }
 
 function resolveVideoPath(baseUrl, relativePath) {
@@ -181,6 +206,7 @@ class BranchiePlayer {
   }
 
   async start(configFile) {
+    await ensureOssConfig();
     this.hideStatus();
     this.clearChoices();
     this.config = await loadConfig(configFile);
@@ -410,7 +436,7 @@ function startEpisode(configFile, title) {
   currentEpisode = { config: configFile, title };
   document.getElementById('player-episode-title').textContent = title;
   showView('player');
-  player.start(configFile).catch(err => {
+  ensureOssConfig().then(() => player.start(configFile)).catch(err => {
     player.showStatus(`加载失败: ${err.message}`);
     console.error(err);
   });
