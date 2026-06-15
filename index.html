@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>互动影游 — WZY GamePlayer</title>
+  <meta name="description" content="AI 驱动互动影游平台。邪气凛然等多部影游作品，分支叙事，选择改变故事。">
+  <link rel="icon" href="https://i0.hdslb.com/bfs/face/3efe5d1692a00ea5abf03ef4e1690351d44141b8.jpg">
+  <link rel="stylesheet" href="/css/site-nav.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <nav class="site-nav always-solid" id="site-nav">
+    <div class="nav-inner">
+      <a class="nav-back-home" href="/">
+        <span class="nav-back-icon">←</span>
+        <span class="nav-back-text">主页</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/manhuanglu/" data-nav="manhuanglu">蛮荒录</a></li>
+        <li><a href="/game/" data-nav="game">互动影游</a></li>
+        <li><a href="/canvas/" data-nav="canvas">无限画布平台</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="菜单">☰</button>
+    </div>
+  </nav>
+
+  <!-- ① 作品库（首页） -->
+  <div id="view-hub" class="view">
+    <div class="hub-hero">
+      <div class="hub-hero-bg"></div>
+      <div class="hub-hero-overlay"></div>
+      <div class="hub-hero-content">
+        <div class="hub-tag">INTERACTIVE CINEMA</div>
+        <h1 id="platform-title">互动影游</h1>
+        <p id="platform-tagline"></p>
+        <p class="hub-desc" id="platform-desc"></p>
+      </div>
+    </div>
+    <div class="hub-body">
+      <div class="section-label">全部作品</div>
+      <div class="series-grid" id="series-grid"></div>
+    </div>
+  </div>
+
+  <!-- ② 单部作品 · 选集 -->
+  <div id="view-series" class="view hidden">
+    <div class="series-banner" id="series-banner">
+      <img id="series-cover" src="" alt="">
+      <div class="series-banner-overlay">
+        <button class="back-btn" id="btn-back-series">← 全部作品</button>
+        <div class="series-banner-text">
+          <span class="series-status" id="series-status"></span>
+          <h2 id="series-title"></h2>
+          <p id="series-subtitle"></p>
+          <p id="series-description"></p>
+          <div class="series-tags" id="series-tags"></div>
+        </div>
+      </div>
+    </div>
+    <div class="hub-body">
+      <div class="section-label">选集播放</div>
+      <div class="episode-list" id="episode-list"></div>
+    </div>
+  </div>
+
+  <!-- ③ 播放器 -->
+  <div id="view-player" class="view hidden">
+    <div class="player-topbar">
+      <button class="back-btn" id="btn-back-player">← 返回选集</button>
+      <span class="player-episode-title" id="player-episode-title"></span>
+    </div>
+    <div class="player-screen">
+      <div class="video-container">
+        <video id="video" playsinline webkit-playsinline></video>
+        <div class="overlay">
+          <div id="choices" class="choices hidden"></div>
+          <div class="controls">
+            <button id="btn-replay" class="ctrl-btn" title="重新开始">↺</button>
+          </div>
+          <div class="progress-bar" id="progress-bar" title="拖动调整进度">
+            <div class="progress-track">
+              <div id="progress" class="progress-fill"></div>
+              <div id="progress-thumb" class="progress-thumb"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="status" class="status hidden"></div>
+    </div>
+  </div>
+
+  <script src="/js/site-nav.js"></script>
+  <script src="player.js"></script>
+  <script>initSiteNav("game");</script>
+</body>
+</html>

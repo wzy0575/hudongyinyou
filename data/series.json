@@ -1,0 +1,71 @@
+{
+  "platform": {
+    "title": "互动影游",
+    "tagline": "AI 驱动 · 分支叙事 · 你的选择改变故事",
+    "desc": "每部作品都是可交互的影游体验。在关键节点做出抉择，探索不同的剧情走向。"
+  },
+  "series": [
+    {
+      "id": "xieqi",
+      "title": "邪气凛然",
+      "subtitle": "都市江湖 · 权谋抉择",
+      "description": "基于同名小说改编。你扮演陈阳，混在夜总会里周旋于各方势力之间——每一个选择，都将把你推向不同的命运。",
+      "cover": "/assets/xieqi-cover.jpg",
+      "status": "试玩上线",
+      "tags": ["分支剧情", "AI 视频", "16 场景"],
+      "available": true,
+      "episodes": [
+        {
+          "id": "ep01-ch01",
+          "title": "第一集：混在夜总会",
+          "desc": "3 个分支点 · 16 个场景 · 约 15 分钟",
+          "config": "branchie-video.xml"
+        }
+      ]
+    },
+    {
+      "id": "xingchenbian",
+      "title": "星辰变",
+      "subtitle": "玄幻修真 · 废柴逆袭",
+      "description": "改编自我吃西红柿同名小说。秦羽因丹田先天不足无法修炼内功，却凭外功与流星泪踏上修真之路——在仙魔妖界与神界中，以分支叙事体验他的逆天改命之旅。",
+      "cover": "/assets/game-covers/xingchenbian.jpg",
+      "status": "筹备中",
+      "tags": ["玄幻修仙", "分支剧情", "国漫 IP"],
+      "available": false,
+      "episodes": []
+    },
+    {
+      "id": "ww1",
+      "title": "穿越火线：第一次世界大战",
+      "subtitle": "世纪三部曲 · 一战风云",
+      "description": "以肯·福莱特《巨人的陨落》为蓝本。1914 年欧洲战火燃起，五大家族的命运在一战堑壕与革命浪潮中交织——你的每一个抉择，都将改写历史的走向。",
+      "cover": "/assets/game-covers/ww1.jpg",
+      "status": "筹备中",
+      "tags": ["历史叙事", "一战", "权谋抉择"],
+      "available": false,
+      "episodes": []
+    },
+    {
+      "id": "ww2",
+      "title": "世界的凛冬：二战的权力游戏",
+      "subtitle": "世纪三部曲 · 二战史诗",
+      "description": "改编自肯·福莱特《世界的凛冬》。1933 年纳粹上台，二战席卷全球——五大家族的下一代在炮火、抵抗与理想之间做出抉择，体验 20 世纪最残酷的年代。",
+      "cover": "/assets/game-covers/ww2.jpg",
+      "status": "筹备中",
+      "tags": ["历史叙事", "二战", "多线分支"],
+      "available": false,
+      "episodes": []
+    },
+    {
+      "id": "cold-war",
+      "title": "永恒的边缘：冷战的权力游戏",
+      "subtitle": "世纪三部曲 · 冷战风云",
+      "description": "改编自肯·福莱特《永恒的边缘》。从柏林墙建造到冷战落幕，五大家族第三代在核阴影、民权运动与意识形态对抗中抉择——你的决定将影响半个世纪的格局。",
+      "cover": "/assets/game-covers/cold-war.jpg",
+      "status": "筹备中",
+      "tags": ["历史叙事", "冷战", "多结局"],
+      "available": false,
+      "episodes": []
+    }
+  ]
+}

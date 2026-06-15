@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 《邪气凛然》第1集：混在夜总会 -->
+<!-- 3 个分支点：每点 2 个选项（原著走向 + 替代选项） -->
+<!-- 16 个 activity，21 条 transition -->
+<branchie-video>
+
+	<activities>
+		<!-- 入口：场景1 -->
+		<activity id="陈阳休息室" video="./EP01-CH01-videos/EP01-CH01-01-陈阳休息室/EP01-CH01-01-陈阳休息室.mp4" start="true" />
+
+		<!-- ★分支点1：场景2 走廊遇玛丽 -->
+		<activity id="走廊遇玛丽" video="./EP01-CH01-videos/EP01-CH01-02-走廊遇玛丽/EP01-CH01-02-走廊遇玛丽.mp4" idle-video="./EP01-CH01-videos/EP01-CH01-03-走廊遇玛丽-待机/EP01-CH01-03-走廊遇玛丽-待机.mp4" />
+		<activity id="顺势反撩" video="./EP01-CH01-videos/EP01-CH01-04-顺势反撩/EP01-CH01-04-顺势反撩.mp4" />
+		<activity id="公事公办" video="./EP01-CH01-videos/EP01-CH01-05-公事公办/EP01-CH01-05-公事公办.mp4" />
+
+		<!-- 汇合后：场景3 后场餐厅 -->
+		<activity id="后场餐厅" video="./EP01-CH01-videos/EP01-CH01-06-后场餐厅/EP01-CH01-06-后场餐厅.mp4" />
+
+		<!-- ★分支点2：场景3 遇阿强凤姐 -->
+		<activity id="遇阿强凤姐" video="./EP01-CH01-videos/EP01-CH01-07-遇阿强凤姐/EP01-CH01-07-遇阿强凤姐.mp4" idle-video="./EP01-CH01-videos/EP01-CH01-08-遇阿强凤姐-待机/EP01-CH01-08-遇阿强凤姐-待机.mp4" />
+		<activity id="礼貌疏远" video="./EP01-CH01-videos/EP01-CH01-09-礼貌疏远/EP01-CH01-09-礼貌疏远.mp4" />
+		<activity id="顺势打探" video="./EP01-CH01-videos/EP01-CH01-10-顺势打探/EP01-CH01-10-顺势打探.mp4" />
+
+		<!-- 汇合后：场景4 桑拿部 -->
+		<activity id="桑拿部" video="./EP01-CH01-videos/EP01-CH01-11-桑拿部/EP01-CH01-11-桑拿部.mp4" />
+
+		<!-- ★分支点3：场景4 桑拿抉择 -->
+		<activity id="桑拿抉择" video="./EP01-CH01-videos/EP01-CH01-12-桑拿抉择/EP01-CH01-12-桑拿抉择.mp4" idle-video="./EP01-CH01-videos/EP01-CH01-13-桑拿抉择-待机/EP01-CH01-13-桑拿抉择-待机.mp4" />
+		<activity id="嫌脏拒绝" video="./EP01-CH01-videos/EP01-CH01-14-嫌脏拒绝/EP01-CH01-14-嫌脏拒绝.mp4" />
+		<activity id="享受按摩" video="./EP01-CH01-videos/EP01-CH01-15-享受按摩/EP01-CH01-15-享受按摩.mp4" />
+
+		<!-- 汇合后：场景5 大堂巡视（当前最终场景） -->
+		<activity id="大堂巡视" video="./EP01-CH01-videos/EP01-CH01-16-大堂巡视/EP01-CH01-16-大堂巡视.mp4" end="true" />
+
+		<!-- 以下场景暂未生成视频，留作后续扩展 -->
+		<!--
+		★分支点4：休息室玛丽挑逗
+		休息室玛丽、顺势接受、推开保持距离
+
+		★分支点5：六号包间
+		六号包间、强硬动手、圆滑周旋
+
+		结局：独自离去
+		-->
+	</activities>
+
+	<transitions>
+		<!-- 入口 → 分支点1 -->
+		<transition caption="开始第一集" priority="0" from="陈阳休息室" to="走廊遇玛丽" wait-signal="false" />
+
+		<!-- ★分支点1：走廊遇玛丽（2 选项） -->
+		<transition caption="顺势反撩，接受玛丽" priority="0" from="走廊遇玛丽" to="顺势反撩" />
+		<transition caption="公事公办，保持距离（原著）" priority="0" from="走廊遇玛丽" to="公事公办" />
+
+		<!-- 分支点1 汇合 → 场景3 -->
+		<transition caption="继续" priority="0" from="顺势反撩" to="后场餐厅" wait-signal="false" />
+		<transition caption="继续" priority="0" from="公事公办" to="后场餐厅" wait-signal="false" />
+
+		<!-- ★分支点2：遇阿强凤姐（2 选项） -->
+		<transition caption="继续" priority="0" from="后场餐厅" to="遇阿强凤姐" wait-signal="false" />
+		<transition caption="礼貌疏远，不露声色（原著）" priority="0" from="遇阿强凤姐" to="礼貌疏远" />
+		<transition caption="顺势打探红牌消息" priority="0" from="遇阿强凤姐" to="顺势打探" />
+
+		<!-- 分支点2 汇合 → 场景4 -->
+		<transition caption="继续" priority="0" from="礼貌疏远" to="桑拿部" wait-signal="false" />
+		<transition caption="继续" priority="0" from="顺势打探" to="桑拿部" wait-signal="false" />
+
+		<!-- 场景4 → ★分支点3 -->
+		<transition caption="继续" priority="0" from="桑拿部" to="桑拿抉择" wait-signal="false" />
+
+		<!-- ★分支点3：桑拿抉择（2 选项） -->
+		<transition caption="嫌脏拒绝，直接下楼（原著）" priority="0" from="桑拿抉择" to="嫌脏拒绝" />
+		<transition caption="享受按摩，停留片刻" priority="0" from="桑拿抉择" to="享受按摩" />
+
+		<!-- 分支点3 汇合 → 结局 -->
+		<transition caption="继续" priority="0" from="嫌脏拒绝" to="大堂巡视" wait-signal="false" />
+		<transition caption="继续" priority="0" from="享受按摩" to="大堂巡视" wait-signal="false" />
+
+		<!--
+		以下 transition 暂未启用，等待后续视频生成：
+
+		场景5 → 休息室玛丽
+		休息室玛丽 → 顺势接受 / 推开保持距离
+		顺势接受 / 推开保持距离 → 六号包间
+		六号包间 → 强硬动手 / 圆滑周旋
+		强硬动手 / 圆滑周旋 → 独自离去
+		-->
+	</transitions>
+
+</branchie-video>
