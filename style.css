@@ -412,13 +412,14 @@ video {
   position: absolute;
   inset: 0;
   pointer-events: none;
+  z-index: 2;
 }
 
 .overlay > * { pointer-events: auto; }
 
 .choices {
   position: absolute;
-  bottom: 60px;
+  bottom: 72px;
   left: 0;
   right: 0;
   display: flex;
@@ -450,10 +451,11 @@ video {
 
 .controls {
   position: absolute;
-  bottom: 20px;
+  bottom: 52px;
   right: 20px;
   display: flex;
   gap: 10px;
+  z-index: 12;
 }
 
 .ctrl-btn {
@@ -476,27 +478,29 @@ video {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 28px;
-  padding: 0 4px;
+  height: 40px;
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
   display: flex;
   align-items: center;
   cursor: pointer;
   pointer-events: auto;
-  z-index: 10;
+  z-index: 20;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.35) 70%, transparent 100%);
 }
 
 .progress-track {
   position: relative;
   width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 2px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 3px;
   transition: height 0.15s;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 }
 
 .progress-bar:hover .progress-track,
 .progress-bar.seeking .progress-track {
-  height: 6px;
+  height: 8px;
 }
 
 .progress-fill {
@@ -505,9 +509,10 @@ video {
   left: 0;
   height: 100%;
   width: 0%;
-  background: var(--gold);
-  border-radius: 2px;
+  background: linear-gradient(90deg, var(--amber), var(--gold));
+  border-radius: 3px;
   pointer-events: none;
+  box-shadow: 0 0 8px rgba(232, 197, 71, 0.6);
 }
 
 .progress-bar:not(.seeking) .progress-fill {
@@ -518,22 +523,22 @@ video {
   position: absolute;
   top: 50%;
   left: 0%;
-  width: 14px;
-  height: 14px;
-  margin-top: -7px;
-  margin-left: -7px;
+  width: 16px;
+  height: 16px;
+  margin-top: -8px;
+  margin-left: -8px;
   border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  transition: opacity 0.15s, transform 0.15s;
+  background: #fff;
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 8px rgba(232, 197, 71, 0.8);
+  opacity: 1;
+  transition: transform 0.15s;
   pointer-events: none;
 }
 
 .progress-bar:hover .progress-thumb,
 .progress-bar.seeking .progress-thumb {
-  opacity: 1;
-  transform: scale(1.1);
+  transform: scale(1.15);
 }
 
 .status {
