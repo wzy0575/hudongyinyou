@@ -12,9 +12,15 @@ function parseTimeSpan(str) {
 
 let videoBaseUrl = '';
 
+/** Resolve asset path relative to current page (/game vs /game/) */
+function assetUrl(relativePath) {
+  const path = relativePath.replace(/^\.\//, '');
+  return new URL(path, new URL('./', window.location.href).href).href;
+}
+
 async function loadOssConfig() {
   try {
-    const res = await fetch('data/oss.json');
+    const res = await fetch(assetUrl('data/oss.json'));
     if (!res.ok) return;
     const cfg = await res.json();
     videoBaseUrl = (cfg.videoBaseUrl || '').trim();
@@ -35,7 +41,7 @@ function resolveVideoPath(baseUrl, relativePath) {
 
 async function loadConfig(configFile) {
   const baseUrl = new URL('./', window.location.href);
-  const res = await fetch(configFile);
+  const res = await fetch(assetUrl(configFile));
   if (!res.ok) throw new Error(`无法加载配置: ${configFile}`);
   const text = await res.text();
   const doc = new DOMParser().parseFromString(text, 'text/xml');
@@ -427,7 +433,7 @@ function backToSeries() {
 
 async function init() {
   await loadOssConfig();
-  const res = await fetch('data/series.json');
+  const res = await fetch(assetUrl('data/series.json'));
   catalog = await res.json();
 
   document.getElementById('platform-title').textContent = catalog.platform.title;
